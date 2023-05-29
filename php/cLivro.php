@@ -1,17 +1,18 @@
 <?php
-    $usuario = $_POST["usuario"];    
+    $codigo = $_POST["codigo"];
     require_once("../php/conexao.php");
-    $sTable = "SELECT usu_usuario FROM usuario WHERE usu_usuario = ?";
+    $sTable = "SELECT liv_codigo FROM livro
+    WHERE liv_codigo = ?";
     $stmt = mysqli_prepare($con, $sTable);
-    mysqli_stmt_bind_param($stmt, "s", $usuario);
+    mysqli_stmt_bind_param($stmt, "s", $codigo);
     mysqli_stmt_execute($stmt);
     $sRetorno = mysqli_stmt_get_result($stmt);
     if ($sRetorno) {
         if (mysqli_num_rows($sRetorno) == 0) {
-            $iTable = "INSERT INTO usuario(usu_usuario ,usu_senha ,usu_nome ,usu_cpf ,usu_endereco ,usu_telefone ,usu_data_nascimento)
+            $iTable = "INSERT INTO livro(liv_codigo ,liv_nome ,aut_nome ,liv_edicao ,liv_editora ,liv_ano ,liv_numPagina)
             VALUES(?,?,?,?,?,?,?)";
             $stmt = mysqli_prepare($con,$iTable);
-            mysqli_stmt_bind_param($stmt,"sssssss",$usuario,$_POST["senha"],$_POST["nome"],$_POST["cpf"],$_POST["endereco"],$_POST["telefone"],$_POST["data_nascimento"]);
+            mysqli_stmt_bind_param($stmt,"sssssss",$codigo,$_POST["nomeLivro"],$_POST["nomeAutor"],$_POST["edicao"],$_POST["editora"],$_POST["anoPubli"],$_POST["numeroPaginas"]);
             if (mysqli_stmt_execute($stmt)) {
                 echo "cadastro realizado com sucesso";
             } else {
@@ -19,10 +20,9 @@
             }
             mysqli_stmt_close($stmt);
             mysqli_close($con);
-            header("location:../index.php");  
         }else{
             echo "usuario já cadastrado, tente outro";
-        }            
+        }
     }else{
         echo 'ERRO SELECT: '. mysqli_error($con);
     }
