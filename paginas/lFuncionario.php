@@ -22,7 +22,7 @@
     <div>
         <form method="post">
             <button name = "cadLivro">Cadastrar Livro</button>
-            <button name = ""></button>
+            <button name = "cadAutor">Cadastrar Autor</button>
             <button name = ""></button>
             <button name = ""></button>
             <button name = ""></button>

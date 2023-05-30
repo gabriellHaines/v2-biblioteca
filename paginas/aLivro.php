@@ -19,6 +19,28 @@
             echo "id: " . $id .' nome: ' .$nome.' tipo: ' .$tipo.' status: ' .$status.' usuario: ' .$usuario.' senha: ' .$senha;
         ?>
     </div>
-    
+    <div>
+    <div>
+        <table >
+            <tr>
+                <th>Código(ISBN)</th>
+                <th>Nome do Livro</th>
+                <th>Nome do Autor</th>
+                <th>Edição</th>
+                <th>Editora</th>
+                <th>Ano da Publicação</th>
+                <th>Número de Páginas</th>
+            </tr>
+            <?php
+                require_once('../php/aLivro.php');
+            ?>
+        </table>
+    </div>
+    </div>
+    <div>
+        <?php
+ 
+        ?>
+    </div>
 </body>
 </html>
